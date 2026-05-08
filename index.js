@@ -4,8 +4,23 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-const port = 9000;
-const host = '0.0.0.0';
+function parseArgs() {
+    const args = process.argv.slice(2);
+    let port = 9000;
+    let host = '0.0.0.0';
+    for (let i = 0; i < args.length; i++) {
+        if (args[i] === '--port' && i + 1 < args.length) {
+            port = parseInt(args[i + 1], 10);
+            i++;
+        } else if (args[i] === '--addr' && i + 1 < args.length) {
+            host = args[i + 1];
+            i++;
+        }
+    }
+    return { port, host };
+}
+
+const { port, host } = parseArgs();
 function readFiles(callback) {
     const folderPath = path.join(__dirname, 'Files');
     fs.readdir(folderPath, (err, files) => {

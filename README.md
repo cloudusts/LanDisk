@@ -12,6 +12,14 @@
 node index.js
 ~~~
 
+## Custom port and
+
+~~~sh
+node index.js --port 8080
+node index.js --addr 127.0.0.1 --port 3000
+node index.js --addr 127.0.0.1
+~~~
+
 ## Something important
 
 You should allow LAN access in firewall
